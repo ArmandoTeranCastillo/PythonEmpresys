@@ -19,7 +19,9 @@ class graph(models.Model):
     year_range_end = models.IntegerField(null=True, blank=True)
     
 
-class census(models.Model):
+#Censo de poblacion por genero en cada estado de Mexico
+class censuspoblation(models.Model):
     title = models.CharField(max_length=50)
     state_title = models.CharField(max_length=50)
+    gender_title = models.CharField(max_length=50)
     census = models.DecimalField(max_digits=10, decimal_places=2, default=0)
