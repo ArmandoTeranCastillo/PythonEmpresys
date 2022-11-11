@@ -13,8 +13,6 @@
 </template>
 
 <script>
-import axios from 'axios';
-
 export default{
 //Inicializar los campos de la tabla
     data(){
@@ -27,23 +25,6 @@ export default{
             graph: []
         }
     },
-    //Crear lista de funciones
-    methods: {
-        getGraph(){
-            //Llamar al servidor Django para obtener las graficas
-            const path = 'http://localhost:8000/api/v1.0/graphs/'
-            axios.get(path).then((response) => {
-                this.graph = response.data
-            })
-            .catch((error) => {
-              console.log(error)  
-            })
-        },
-        created(){
-            this.getGraph()
-        }
-
-    }
 }
 </script>
 

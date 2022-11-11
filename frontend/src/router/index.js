@@ -9,15 +9,9 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
-    },
-    //JSON para las graficas
-     {
-      path: '/graph',
       name: 'listgraph',
       component: listgraph
-     } 
+    },
   ],
   //Trabajar con los componentes a traves de URLs
   mode: 'history'

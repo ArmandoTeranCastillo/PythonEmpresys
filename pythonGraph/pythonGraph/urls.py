@@ -1,4 +1,4 @@
-"""PythonChart URL Configuration
+"""pythonGraph URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.1/topics/http/urls/
@@ -16,8 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-#Integrar los archivos URls al proyecto
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1.0/', include('dinamicgraphs.urls')),
+    path('api/', include('Graphs.urls'))
 ]
