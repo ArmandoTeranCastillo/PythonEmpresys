@@ -20,16 +20,27 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure--k@kfvxwk8p+g(4#i_=+ycr8$qfx2fq+p@-ruzq*eek#h&2p*!'
+SECRET_KEY = 'django-insecure-_q!g%c^=fiun_z-xwu3$5%*22_k9svn^a)q@7dr@!d(9%s@e$#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
 
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ORIGIN_ALLOW_ALL = True
 
-# Application definition
+
+CORS_ALLOW_HEADERS = [
+"accept",
+"accept-encoding",
+"authorization",
+"content-type",
+"dnt",
+"origin",
+"user-agent",
+"x-csrftoken",
+"x-requested-with",
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -44,6 +55,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -51,9 +64,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.common.CommonMiddleware',
 ]
+
+
+
 
 ROOT_URLCONF = 'pythonGraph.urls'
 
@@ -81,13 +95,8 @@ WSGI_APPLICATION = 'pythonGraph.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': 'r1pQQzSNr7qE4tyfOqRk',
-        'HOST': 'containers-us-west-56.railway.app',
-        'PORT': '6585',
-        
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 

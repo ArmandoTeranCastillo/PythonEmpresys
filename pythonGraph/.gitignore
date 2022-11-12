@@ -11,6 +11,8 @@ __pycache__/
 build/
 develop-eggs/
 dist/
+migrations/
+pythonGraph/Graphs/migrations/
 downloads/
 eggs/
 .eggs/

@@ -1,27 +1,34 @@
 from django.db import models
-from django.contrib.postgres.fields import ArrayField
 from decimal import Decimal
-#Definir los modelos. Con ellos podremos organizar,
-#almacenar y migrar nuestra informacion desde una base de datos
-#hasta las views que podra ver el usuario
+# Create your models here.
+
 class graph(models.Model):
-    title = models.CharField(max_length=50) #Nombre de la grafica
-    x_axis_title = models.CharField(max_length=50) #Titulo del Eje X
-    y_axis_title = models.CharField(max_length=50) #Titulo del Eje Y
+    title = models.CharField(max_length=50, null=True)
+    x_axis_title = models.CharField(max_length=50)
+    y_axis_title = models.CharField(max_length=50)
 
-    x_axis_values = ArrayField( #Lista de valores del Eje X
-            models.CharField(max_length=50),
-            size= 1 #Dimension de la lista
-    ) 
-    y_axis_values = ArrayField( #Lista de valores del Eje Y
-            models.CharField(max_length=50),
-            size= 1 
-    ) 
+class x_axis_labels(models.Model):
+    graph = models.ForeignKey(graph, on_delete=models.CASCADE, verbose_name= 'IdGraph') #Muchos a uno
+    label = models.CharField(max_length=50)
 
-    year = models.IntegerField(null=True, blank=True) #Año del censo
+class y_axis_labels(models.Model):
+    graph = models.ForeignKey(graph, on_delete=models.CASCADE, verbose_name= 'IdGraph') #Muchos a uno
+    label = models.CharField(max_length=50)
 
-    censusdata = ArrayField( #Lista de valores del censo
-            models.CharField(max_length=50),
-            size= 1 #Dimension de la lista
-    ) 
+class year(models.Model):
+    graph = models.ForeignKey(graph, on_delete=models.CASCADE, verbose_name= 'IdGraph') #Muchos a uno
+    year = models.IntegerField(null=True, blank=True)
+
+class entity(models.Model):
+    graph = models.ForeignKey(graph, on_delete=models.CASCADE, verbose_name= 'IdGraph') #Muchos a uno
+    year = models.ManyToManyField(year) #Muchos a muchos
+    Entity = models.CharField(max_length=50)
+
+class census(models.Model):
+    graph = models.ForeignKey(graph, on_delete=models.CASCADE, verbose_name= 'IdGraph') #Muchos a uno
+    years = models.ForeignKey(year,on_delete=models.CASCADE, verbose_name= 'IdYear') #Muchos a uno
+    entity = models.ForeignKey(entity,on_delete=models.CASCADE, verbose_name= 'IdEntity') #Muchos a uno
+    data = models.DecimalField(max_digits=2, decimal_places=1)
+
+
 
