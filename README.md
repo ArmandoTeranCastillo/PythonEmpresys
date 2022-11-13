@@ -1,7 +1,6 @@
 # TestEmpresys
 Plataforma Web hecha con Vue JS, Django y MySQL, complementada con la libreria ChartJS para la creación e interacción de gráficas
 
-# Liberias necesarias para ejecutar el programa
 # Backend
 - Django: 'pip install django'
 - Django_Rest_Framework: 'pip install django-restframework' 
